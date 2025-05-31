@@ -1,0 +1,48 @@
+name: m88-portal
+
+services:
+  m88_portal_server:
+    container_name: m88_portal_server
+    restart: unless-stopped
+    build:
+      dockerfile: Dockerfile
+      context: .
+    env_file:
+      - ./.env
+    volumes:
+      - .:/app
+      # - /app/dist
+      - /app/node_modules
+    ports:
+      - 5610:3000
+      # debugging port
+      # - 5611:9229
+    networks:
+      - m88_portal
+    # external_links:
+    #   - m88_redis:m88_redis
+    #   - m88_postgres:m88_postgres
+# ===============================
+# prisma-studio:
+#     image: node:lts-alpine3.17
+#     working_dir: /usr/src/app
+#     volumes:
+#       - .:/usr/src/app
+#     command: npx prisma studio --port 5555 --browser none
+#     ports:
+#       - "5555:5555"
+#     env_file:
+#       - .env.prod
+#     networks:
+#       - m88_portal
+#     depends_on:
+#       postgres_db:
+#         condition: service_healthy
+#       server:
+#         condition: service_started
+# ===============================
+# Networks
+networks:
+  m88_portal:
+    name: m88_portal
+    external: true
