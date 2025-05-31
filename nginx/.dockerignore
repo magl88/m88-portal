@@ -1,0 +1,8 @@
+.env.example
+.tmp/
+.git/
+.cache/
+data/
+build/
+backup/
+node_modules/
