@@ -1,0 +1,27 @@
+name: m88-portal
+
+services:
+  m88_minio:
+    container_name: m88_minio
+    restart: unless-stopped
+    image: bitnami/minio:2025.4.22
+    env_file: .env
+    volumes:
+      - ./data:/bitnami/minio/data
+    ports:
+      - '5690:9000'
+      - '5691:9001'
+    networks:
+      - m88_portal
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:9000/minio/health/live']
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+# ===============================
+# Networks
+networks:
+  m88_portal:
+    name: m88_portal
+    external: true
