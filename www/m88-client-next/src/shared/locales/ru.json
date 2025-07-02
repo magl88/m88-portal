@@ -1,0 +1,62 @@
+{
+	"Error": {
+		"description": "<p>У нас произошла ошибка.</p><p>Вы можете попробовать <retry>перезагрузить страницу</retry>, которую вы посещали.</p>",
+		"title": "Что-то пошло не так!"
+	},
+	"Header": {
+		"logo": "M88 Portal",
+		"login": "Войти",
+		"toggleMenu": "Переключить меню"
+	},
+	"HomePage": {
+		"about": "Перейти на страницу о нас",
+		"title": "Привет мир!"
+	},
+	"LocaleSwitcher": {
+		"label": "Язык",
+		"locale": "{locale, select, en {Eng} ru {Рус} other {Unknown}}",
+		"en": "Eng",
+		"ru": "Рус"
+	},
+	"Manifest": {
+		"description": "M88 Портал тестового проекта",
+		"name": "M88 Портал",
+		"shortName": "M88"
+	},
+	"NotFoundPage": {
+		"description": "Пожалуйста, проверьте адресную строку браузера или используйте навигацию, чтобы перейти на известную страницу.",
+		"title": "Страница не найдена"
+	},
+	"Page": {
+		"home": "Главная"
+	},
+	"LocaleLayout": {
+		"title": "Локальная"
+	},
+	"HeaderNavs": {
+		"home": {
+			"label": "Главная"
+		},
+		"about": {
+			"label": "О нас"
+		},
+		"client": {
+			"label": "Клиентская"
+		},
+		"server": {
+			"label": "Серверная"
+		},
+		"static": {
+			"label": "Статическая"
+		}
+	},
+	"ThemeToggle": {
+		"dark": "Темная",
+		"light": "Светлая",
+		"system": "Системная",
+		"toggleTheme": "Переключить тему"
+	},
+	"Footer": {
+		"copyright": "M88 Portal. Все права защищены."
+	}
+}
