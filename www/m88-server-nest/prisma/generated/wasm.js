@@ -162,6 +162,7 @@ exports.Prisma.PageScalarFieldEnum = {
   slug: 'slug',
   content: 'content',
   thumbnail: 'thumbnail',
+  locale: 'locale',
   isPublished: 'isPublished',
   isPrivate: 'isPrivate',
   forRoles: 'forRoles',
@@ -197,6 +198,11 @@ exports.UserRole = exports.$Enums.UserRole = {
 exports.AuthMethod = exports.$Enums.AuthMethod = {
   CREDENTIALS: 'CREDENTIALS',
   GOOGLE: 'GOOGLE'
+};
+
+exports.Locale = exports.$Enums.Locale = {
+  EN: 'EN',
+  RU: 'RU'
 };
 
 exports.Prisma.ModelName = {

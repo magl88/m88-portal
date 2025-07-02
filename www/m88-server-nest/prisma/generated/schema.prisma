@@ -25,6 +25,11 @@ enum TokenType {
   PASSWORD_RESET
 }
 
+enum Locale {
+  EN
+  RU
+}
+
 model Token {
   id String @id @default(uuid())
 
@@ -88,9 +93,11 @@ model Page {
   id String @id @default(uuid())
 
   title     String
-  slug      String  @unique
+  slug      String
   content   String
   thumbnail String?
+
+  locale Locale @default(EN)
 
   isPublished Boolean    @default(false) @map("is_published")
   isPrivate   Boolean    @default(false) @map("is_private")

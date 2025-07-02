@@ -62,6 +62,14 @@ export const TokenType: {
 
 export type TokenType = (typeof TokenType)[keyof typeof TokenType]
 
+
+export const Locale: {
+  EN: 'EN',
+  RU: 'RU'
+};
+
+export type Locale = (typeof Locale)[keyof typeof Locale]
+
 }
 
 export type UserRole = $Enums.UserRole
@@ -75,6 +83,10 @@ export const AuthMethod: typeof $Enums.AuthMethod
 export type TokenType = $Enums.TokenType
 
 export const TokenType: typeof $Enums.TokenType
+
+export type Locale = $Enums.Locale
+
+export const Locale: typeof $Enums.Locale
 
 /**
  * ##  Prisma Client ʲˢ
@@ -4562,6 +4574,7 @@ export namespace Prisma {
     slug: string | null
     content: string | null
     thumbnail: string | null
+    locale: $Enums.Locale | null
     isPublished: boolean | null
     isPrivate: boolean | null
     createdAt: Date | null
@@ -4574,6 +4587,7 @@ export namespace Prisma {
     slug: string | null
     content: string | null
     thumbnail: string | null
+    locale: $Enums.Locale | null
     isPublished: boolean | null
     isPrivate: boolean | null
     createdAt: Date | null
@@ -4586,6 +4600,7 @@ export namespace Prisma {
     slug: number
     content: number
     thumbnail: number
+    locale: number
     isPublished: number
     isPrivate: number
     forRoles: number
@@ -4601,6 +4616,7 @@ export namespace Prisma {
     slug?: true
     content?: true
     thumbnail?: true
+    locale?: true
     isPublished?: true
     isPrivate?: true
     createdAt?: true
@@ -4613,6 +4629,7 @@ export namespace Prisma {
     slug?: true
     content?: true
     thumbnail?: true
+    locale?: true
     isPublished?: true
     isPrivate?: true
     createdAt?: true
@@ -4625,6 +4642,7 @@ export namespace Prisma {
     slug?: true
     content?: true
     thumbnail?: true
+    locale?: true
     isPublished?: true
     isPrivate?: true
     forRoles?: true
@@ -4711,6 +4729,7 @@ export namespace Prisma {
     slug: string
     content: string
     thumbnail: string | null
+    locale: $Enums.Locale
     isPublished: boolean
     isPrivate: boolean
     forRoles: $Enums.UserRole[]
@@ -4741,6 +4760,7 @@ export namespace Prisma {
     slug?: boolean
     content?: boolean
     thumbnail?: boolean
+    locale?: boolean
     isPublished?: boolean
     isPrivate?: boolean
     forRoles?: boolean
@@ -4754,6 +4774,7 @@ export namespace Prisma {
     slug?: boolean
     content?: boolean
     thumbnail?: boolean
+    locale?: boolean
     isPublished?: boolean
     isPrivate?: boolean
     forRoles?: boolean
@@ -4767,6 +4788,7 @@ export namespace Prisma {
     slug?: boolean
     content?: boolean
     thumbnail?: boolean
+    locale?: boolean
     isPublished?: boolean
     isPrivate?: boolean
     forRoles?: boolean
@@ -4780,6 +4802,7 @@ export namespace Prisma {
     slug?: boolean
     content?: boolean
     thumbnail?: boolean
+    locale?: boolean
     isPublished?: boolean
     isPrivate?: boolean
     forRoles?: boolean
@@ -4787,7 +4810,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type PageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "content" | "thumbnail" | "isPublished" | "isPrivate" | "forRoles" | "createdAt" | "updatedAt", ExtArgs["result"]["page"]>
+  export type PageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "content" | "thumbnail" | "locale" | "isPublished" | "isPrivate" | "forRoles" | "createdAt" | "updatedAt", ExtArgs["result"]["page"]>
 
   export type $PagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Page"
@@ -4798,6 +4821,7 @@ export namespace Prisma {
       slug: string
       content: string
       thumbnail: string | null
+      locale: $Enums.Locale
       isPublished: boolean
       isPrivate: boolean
       forRoles: $Enums.UserRole[]
@@ -5231,6 +5255,7 @@ export namespace Prisma {
     readonly slug: FieldRef<"Page", 'String'>
     readonly content: FieldRef<"Page", 'String'>
     readonly thumbnail: FieldRef<"Page", 'String'>
+    readonly locale: FieldRef<"Page", 'Locale'>
     readonly isPublished: FieldRef<"Page", 'Boolean'>
     readonly isPrivate: FieldRef<"Page", 'Boolean'>
     readonly forRoles: FieldRef<"Page", 'UserRole[]'>
@@ -5667,6 +5692,7 @@ export namespace Prisma {
     slug: 'slug',
     content: 'content',
     thumbnail: 'thumbnail',
+    locale: 'locale',
     isPublished: 'isPublished',
     isPrivate: 'isPrivate',
     forRoles: 'forRoles',
@@ -5794,6 +5820,20 @@ export namespace Prisma {
    * Reference to a field of type 'AuthMethod[]'
    */
   export type ListEnumAuthMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AuthMethod[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Locale'
+   */
+  export type EnumLocaleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Locale'>
+    
+
+
+  /**
+   * Reference to a field of type 'Locale[]'
+   */
+  export type ListEnumLocaleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Locale[]'>
     
 
 
@@ -6048,6 +6088,7 @@ export namespace Prisma {
     slug?: StringFilter<"Page"> | string
     content?: StringFilter<"Page"> | string
     thumbnail?: StringNullableFilter<"Page"> | string | null
+    locale?: EnumLocaleFilter<"Page"> | $Enums.Locale
     isPublished?: BoolFilter<"Page"> | boolean
     isPrivate?: BoolFilter<"Page"> | boolean
     forRoles?: EnumUserRoleNullableListFilter<"Page">
@@ -6061,6 +6102,7 @@ export namespace Prisma {
     slug?: SortOrder
     content?: SortOrder
     thumbnail?: SortOrderInput | SortOrder
+    locale?: SortOrder
     isPublished?: SortOrder
     isPrivate?: SortOrder
     forRoles?: SortOrder
@@ -6070,19 +6112,20 @@ export namespace Prisma {
 
   export type PageWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    slug?: string
     AND?: PageWhereInput | PageWhereInput[]
     OR?: PageWhereInput[]
     NOT?: PageWhereInput | PageWhereInput[]
     title?: StringFilter<"Page"> | string
+    slug?: StringFilter<"Page"> | string
     content?: StringFilter<"Page"> | string
     thumbnail?: StringNullableFilter<"Page"> | string | null
+    locale?: EnumLocaleFilter<"Page"> | $Enums.Locale
     isPublished?: BoolFilter<"Page"> | boolean
     isPrivate?: BoolFilter<"Page"> | boolean
     forRoles?: EnumUserRoleNullableListFilter<"Page">
     createdAt?: DateTimeFilter<"Page"> | Date | string
     updatedAt?: DateTimeFilter<"Page"> | Date | string
-  }, "id" | "slug">
+  }, "id">
 
   export type PageOrderByWithAggregationInput = {
     id?: SortOrder
@@ -6090,6 +6133,7 @@ export namespace Prisma {
     slug?: SortOrder
     content?: SortOrder
     thumbnail?: SortOrderInput | SortOrder
+    locale?: SortOrder
     isPublished?: SortOrder
     isPrivate?: SortOrder
     forRoles?: SortOrder
@@ -6109,6 +6153,7 @@ export namespace Prisma {
     slug?: StringWithAggregatesFilter<"Page"> | string
     content?: StringWithAggregatesFilter<"Page"> | string
     thumbnail?: StringNullableWithAggregatesFilter<"Page"> | string | null
+    locale?: EnumLocaleWithAggregatesFilter<"Page"> | $Enums.Locale
     isPublished?: BoolWithAggregatesFilter<"Page"> | boolean
     isPrivate?: BoolWithAggregatesFilter<"Page"> | boolean
     forRoles?: EnumUserRoleNullableListFilter<"Page">
@@ -6377,6 +6422,7 @@ export namespace Prisma {
     slug: string
     content: string
     thumbnail?: string | null
+    locale?: $Enums.Locale
     isPublished?: boolean
     isPrivate?: boolean
     forRoles?: PageCreateforRolesInput | $Enums.UserRole[]
@@ -6390,6 +6436,7 @@ export namespace Prisma {
     slug: string
     content: string
     thumbnail?: string | null
+    locale?: $Enums.Locale
     isPublished?: boolean
     isPrivate?: boolean
     forRoles?: PageCreateforRolesInput | $Enums.UserRole[]
@@ -6403,6 +6450,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale
     isPublished?: BoolFieldUpdateOperationsInput | boolean
     isPrivate?: BoolFieldUpdateOperationsInput | boolean
     forRoles?: PageUpdateforRolesInput | $Enums.UserRole[]
@@ -6416,6 +6464,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale
     isPublished?: BoolFieldUpdateOperationsInput | boolean
     isPrivate?: BoolFieldUpdateOperationsInput | boolean
     forRoles?: PageUpdateforRolesInput | $Enums.UserRole[]
@@ -6429,6 +6478,7 @@ export namespace Prisma {
     slug: string
     content: string
     thumbnail?: string | null
+    locale?: $Enums.Locale
     isPublished?: boolean
     isPrivate?: boolean
     forRoles?: PageCreateforRolesInput | $Enums.UserRole[]
@@ -6442,6 +6492,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale
     isPublished?: BoolFieldUpdateOperationsInput | boolean
     isPrivate?: BoolFieldUpdateOperationsInput | boolean
     forRoles?: PageUpdateforRolesInput | $Enums.UserRole[]
@@ -6455,6 +6506,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale
     isPublished?: BoolFieldUpdateOperationsInput | boolean
     isPrivate?: BoolFieldUpdateOperationsInput | boolean
     forRoles?: PageUpdateforRolesInput | $Enums.UserRole[]
@@ -6785,6 +6837,13 @@ export namespace Prisma {
     _max?: NestedEnumAuthMethodFilter<$PrismaModel>
   }
 
+  export type EnumLocaleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Locale | EnumLocaleFieldRefInput<$PrismaModel>
+    in?: $Enums.Locale[] | ListEnumLocaleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Locale[] | ListEnumLocaleFieldRefInput<$PrismaModel>
+    not?: NestedEnumLocaleFilter<$PrismaModel> | $Enums.Locale
+  }
+
   export type EnumUserRoleNullableListFilter<$PrismaModel = never> = {
     equals?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel> | null
     has?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel> | null
@@ -6799,6 +6858,7 @@ export namespace Prisma {
     slug?: SortOrder
     content?: SortOrder
     thumbnail?: SortOrder
+    locale?: SortOrder
     isPublished?: SortOrder
     isPrivate?: SortOrder
     forRoles?: SortOrder
@@ -6812,6 +6872,7 @@ export namespace Prisma {
     slug?: SortOrder
     content?: SortOrder
     thumbnail?: SortOrder
+    locale?: SortOrder
     isPublished?: SortOrder
     isPrivate?: SortOrder
     createdAt?: SortOrder
@@ -6824,10 +6885,21 @@ export namespace Prisma {
     slug?: SortOrder
     content?: SortOrder
     thumbnail?: SortOrder
+    locale?: SortOrder
     isPublished?: SortOrder
     isPrivate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type EnumLocaleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Locale | EnumLocaleFieldRefInput<$PrismaModel>
+    in?: $Enums.Locale[] | ListEnumLocaleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Locale[] | ListEnumLocaleFieldRefInput<$PrismaModel>
+    not?: NestedEnumLocaleWithAggregatesFilter<$PrismaModel> | $Enums.Locale
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLocaleFilter<$PrismaModel>
+    _max?: NestedEnumLocaleFilter<$PrismaModel>
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -6926,6 +6998,10 @@ export namespace Prisma {
 
   export type PageCreateforRolesInput = {
     set: $Enums.UserRole[]
+  }
+
+  export type EnumLocaleFieldUpdateOperationsInput = {
+    set?: $Enums.Locale
   }
 
   export type PageUpdateforRolesInput = {
@@ -7131,6 +7207,23 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumAuthMethodFilter<$PrismaModel>
     _max?: NestedEnumAuthMethodFilter<$PrismaModel>
+  }
+
+  export type NestedEnumLocaleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Locale | EnumLocaleFieldRefInput<$PrismaModel>
+    in?: $Enums.Locale[] | ListEnumLocaleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Locale[] | ListEnumLocaleFieldRefInput<$PrismaModel>
+    not?: NestedEnumLocaleFilter<$PrismaModel> | $Enums.Locale
+  }
+
+  export type NestedEnumLocaleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Locale | EnumLocaleFieldRefInput<$PrismaModel>
+    in?: $Enums.Locale[] | ListEnumLocaleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Locale[] | ListEnumLocaleFieldRefInput<$PrismaModel>
+    not?: NestedEnumLocaleWithAggregatesFilter<$PrismaModel> | $Enums.Locale
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLocaleFilter<$PrismaModel>
+    _max?: NestedEnumLocaleFilter<$PrismaModel>
   }
 
   export type UserCreateWithoutAccountsInput = {
