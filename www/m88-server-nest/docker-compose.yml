@@ -1,0 +1,31 @@
+name: m88-portal
+
+services:
+  m88_portal_server:
+    container_name: m88_portal_server
+    restart: unless-stopped
+    build:
+      dockerfile: Dockerfile
+      context: .
+    env_file:
+      - ./.env.dev.docker
+    volumes:
+      - .:/app
+      # - /app/dist
+      - /app/node_modules
+    ports:
+      - 5610:3000
+      - 5615:5555
+      # debugging port
+      # - 5611:9229
+    networks:
+      - m88_portal
+    # external_links:
+    #   - m88_redis:m88_redis
+    #   - m88_postgres:m88_postgres
+# ===============================
+# Networks
+networks:
+  m88_portal:
+    name: m88_portal
+    external: true

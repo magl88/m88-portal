@@ -1,0 +1,21 @@
+# Версии и метаданные
+.git
+.gitignore
+.dockerignore
+
+# Зависимости при сборке
+dist
+node_modules
+coverage
+prisma/generated
+
+# Окружающая среда (содержит конфиденциальные данные)
+.env
+.env.prod
+.env.serv
+.env*
+
+# Файлы, не требующиеся в сборке
+Dockerfile
+README.md
+.eslintrc.js

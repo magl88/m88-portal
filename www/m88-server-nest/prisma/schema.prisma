@@ -1,0 +1,119 @@
+generator client {
+  provider      = "prisma-client-js"
+  output        = "./generated"
+  binaryTargets = ["native", "debian-openssl-3.0.x", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum AuthMethod {
+  CREDENTIALS
+  GOOGLE
+}
+
+enum TokenType {
+  VERIFICATION
+  TWO_FACTOR
+  PASSWORD_RESET
+}
+
+model Token {
+  id String @id @default(uuid())
+
+  email     String
+  token     String    @unique
+  type      TokenType
+  expiresIn DateTime  @map("expires_in")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("tokens")
+}
+
+model Account {
+  id String @id @default(uuid())
+
+  type     String
+  provider String
+
+  providerAccountId String @map("provider_account_id")
+
+  refreshToken String? @map("refresh_token")
+  accessToken  String? @map("access_token")
+  expiresAt    Int     @map("expires_at")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String? @map("user_id")
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model User {
+  id String @id @default(uuid())
+
+  email    String @unique
+  password String
+
+  displayName String
+  picture     String?
+
+  role UserRole @default(USER)
+
+  isVerified         Boolean @default(false) @map("is_verified")
+  isTwoFactorEnabled Boolean @default(false) @map("is_two_factor_enabled")
+
+  method AuthMethod
+
+  accounts Account[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model Page {
+  id String @id @default(uuid())
+
+  title     String
+  slug      String  @unique
+  content   String
+  thumbnail String?
+
+  isPublished Boolean    @default(false) @map("is_published")
+  isPrivate   Boolean    @default(false) @map("is_private")
+  forRoles    UserRole[] @map("for_roles")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("pages")
+}
+
+// model File {
+//   id String @id @default(uuid())
+
+//   originalName String  @map("original_name")
+//   filename     String  @unique
+//   path         String  @unique
+//   type         String?
+//   extension    String?
+//   mimeType     String  @map("mime_type")
+//   size         Int
+
+//   createdAt DateTime @default(now()) @map("created_at")
+
+//   @@map("files")
+// }
