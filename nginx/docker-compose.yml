@@ -1,0 +1,26 @@
+name: m88-portal
+
+services:
+  # --------------------------------
+  # Nginx proxy manager
+  m88_nginx-pm:
+    container_name: m88_nginx-proxy
+    image: jc21/nginx-proxy-manager:latest
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - ./data/nginx:/data
+      - ./data/letsencrypt:/etc/letsencrypt
+    ports:
+      - 80:80
+      - 5681:81
+      - 443:443
+    networks:
+      - m88_portal
+# ===============================
+# Networks
+networks:
+  m88_portal:
+    name: m88_portal
+    # driver: bridge
+    external: true
