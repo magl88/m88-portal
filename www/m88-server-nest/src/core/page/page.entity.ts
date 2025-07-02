@@ -26,6 +26,13 @@ export class PageEntity implements Page {
 	})
 	thumbnail: string | null;
 
+	@ApiProperty({
+		description: "Page locale",
+		enum: $Enums.Locale,
+		example: $Enums.Locale.EN,
+	})
+	locale: $Enums.Locale;
+
 	@ApiProperty({ description: "Is the page published?" })
 	isPublished: boolean;
 

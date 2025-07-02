@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { Prisma } from "@prisma/generated";
+import { Locale } from "@prisma/generated";
 import { I18nContext, I18nService } from "nestjs-i18n";
 
 import { PaginationDto } from "@/shared/dto";
@@ -35,17 +35,18 @@ export class PageService {
 	public async getBySlug(req: Request, slug: string, headers: Headers) {
 		const currentLocale = this.i18n;
 		// console.log("CurrentФФФ locale:", currentLocale.resolveLanguage());
-		// console.log("CurrentЫЫЫ locale:", I18nContext.current()?.lang);
+		console.log("CurrentЫЫЫ locale:", I18nContext.current()?.lang);
 		// console.log("Consoleheaders: ", req.);
 
 		// const cachedPage = await this.redisService.get(`pages:${slug}`);
 
 		// if (cachedPage) return JSON.parse(cachedPage);
 
-		const page = await this.prismaService.page.findUniqueOrThrow({
+		const page = await this.prismaService.page.findFirstOrThrow({
 			where: {
-				slug,
+				slug: slugify(slug),
 				isPublished: true,
+				locale: (I18nContext.current()?.lang.toUpperCase() as Locale) || Locale.EN,
 			},
 		});
 
