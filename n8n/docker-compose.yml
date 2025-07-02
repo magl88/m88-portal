@@ -1,0 +1,23 @@
+name: m88-portal
+
+services:
+  m88_n8n:
+    container_name: m88_n8n
+    restart: unless-stopped
+    image: n8nio/n8n:latest
+    env_file: .env
+    volumes:
+      - ./data:/home/node/
+    ports:
+      - 5678:5678
+    networks:
+      - m88_portal
+    external_links:
+      - m88_postgres_17
+
+# ===============================
+# Networks
+networks:
+  m88_portal:
+    name: m88_portal
+    external: true
